@@ -27,7 +27,7 @@ get_header(); ?>
                             <th class="date">Date</th>
                             <th class="activity">Activity</th>
                             <th class="description">Description</th>
-                            <th class="points">Points</th>
+                            <th class="points">Points Score / Maximum</th>
                             <th class="evidence">Evidence</th>
                             <th class="categories">Categories</th>
                         </tr>
@@ -38,6 +38,8 @@ get_header(); ?>
                     while ( have_posts() ) : the_post();
                         $date_completed    = get_post_meta( $post->ID, '_cpd_date_completed', true);
                         $points            = get_post_meta( $post->ID, '_cpd_points', true);
+						$total_score       = get_post_meta( $post->ID, '_cpd_score', TRUE );
+						$max_score         = get_post_meta( $post->ID, '_cpd_score_max', TRUE );
                         $evidence_group    = get_post_meta( $post->ID, '_cpd_group', false);
                         $terms             = wp_get_post_terms( $post->ID, 'development-category');
 
@@ -76,7 +78,7 @@ get_header(); ?>
                                 </td>
 
                                 <td class="points">
-                                    <?php echo $points;?>
+                                    <?php echo $points;?> / <?php echo $total_score;?> / <?php echo $max_score;?>
                                 </td>
 
                                 <td class="evidence">
