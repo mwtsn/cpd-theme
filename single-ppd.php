@@ -15,6 +15,7 @@ get_header(); ?>
         while ( have_posts() ) : the_post();
             $date_completed    = get_post_meta( $post->ID, '_cpd_date_completed', true);
             $points            = get_post_meta( $post->ID, '_cpd_points', true);
+			$self_score        = get_post_meta( $post->ID, '_cpd_score_self', TRUE );
 			$total_score       = get_post_meta( $post->ID, '_cpd_score', TRUE );
             $evidence_group    = get_post_meta( $post->ID, '_cpd_group', false);
             $terms             = wp_get_post_terms( $post->ID, 'development-category');
@@ -49,11 +50,11 @@ get_header(); ?>
                                     </p>
                                 </section>
                                 <?php
-                                    if ( !empty( $points ) ) {
+                                    if ( !empty( $self_score ) ) {
                                         ?>
 										<section>
-                                            <h2>Points Awarded / Overall Score</h2>
-                                            <p><?php  echo $points;?> / <?php  echo $total_score;?></p>
+                                            <h2>Self Score / Overall Score</h2>
+                                            <p><?php  echo $self_score;?> / <?php  echo $total_score;?></p>
                                         </section>
                                         <?php
                                     }
